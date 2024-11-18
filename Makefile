@@ -10,4 +10,5 @@ test:
 	-scheme $(TEST_SCHEME) \
 	-sdk $(TEST_SDK) \
 	-destination $(TESET_DESTINATION) \
-	CODE_SIGNING_ALLOWED='NO'
+	CODE_SIGNING_ALLOWED='NO' \
+	| xcbeautify
