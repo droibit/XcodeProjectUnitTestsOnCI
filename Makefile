@@ -1,7 +1,7 @@
 TEST_SCHEME := UnitTestsOnCI
 TEST_PROJECT := UnitTestsOnCI.xcodeproj
 TEST_SDK := iphonesimulator
-TESET_DESTINATION := 'platform=iOS Simulator,OS=latest,name=iPhone 15'
+TESET_DESTINATION := 'platform=iOS Simulator,OS=latest,name=iPhone 16'
 
 .PHONY: test
 test:
