@@ -6,14 +6,32 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.1.app
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app
 
 jobs:
   build:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache mint packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.mint
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mint-      
+
+      - name: Install mint
+        run: |
+          brew install mint
+          make bootstrap
+
+      - name: Linting
+        run: make lint    
+
       - name: Show current version of Xcode
         run: xcodebuild -version      
+
       - name: Run tests
         run: make test
